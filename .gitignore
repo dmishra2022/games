@@ -5,6 +5,7 @@ node_modules/
 dist/
 site/
 submission-artifacts/
+tools/
 
 # Caches
 .vite/
