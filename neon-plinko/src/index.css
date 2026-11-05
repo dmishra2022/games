@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0b0b16;
+  color: #ffffff;
+  font-family:
+    'Rajdhani',
+    'Segoe UI',
+    system-ui,
+    sans-serif;
+  overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+canvas {
+  display: block;
+  touch-action: none;
+}

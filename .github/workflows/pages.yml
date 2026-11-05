@@ -1,0 +1,84 @@
+name: Build & Deploy Arcade to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install & build Neon Plinko
+        working-directory: neon-plinko
+        env:
+          # Set VITE_AD_PROVIDER in the repo "Variables" to flip providers
+          # (none | crazygames | poki | adsense). Default none = no ads.
+          VITE_AD_PROVIDER: ${{ vars.VITE_AD_PROVIDER || 'none' }}
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Install & build Neon Survivor
+        working-directory: neon-survivor
+        env:
+          VITE_AD_PROVIDER: ${{ vars.VITE_AD_PROVIDER || 'none' }}
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Install & build Tank Commander
+        working-directory: tank-commander
+        env:
+          VITE_AD_PROVIDER: ${{ vars.VITE_AD_PROVIDER || 'none' }}
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Assemble site/
+        run: |
+          rm -rf site
+          mkdir -p site
+          cp -R landing/. site/
+          mkdir -p site/neon-plinko && cp -R neon-plinko/dist/. site/neon-plinko/
+          mkdir -p site/neon-survivor && cp -R neon-survivor/dist/. site/neon-survivor/
+          mkdir -p site/tank-commander && cp -R tank-commander/dist/. site/tank-commander/
+          # Prevent Jekyll from rewriting dotfiles / underscored paths.
+          touch site/.nojekyll
+          ls -R site | head -50
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
