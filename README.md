@@ -1,5 +1,7 @@
 # Arcade — free HTML5 browser games
 
+**Live:** [https://dmishra2022.github.io/games/](https://dmishra2022.github.io/games/)
+
 A tiny arcade of zero-install browser games built with **Vite + React + TypeScript + Tailwind** and a unit-tested Canvas game engine for each. Three complete games live here:
 
 | Game | Path | Tech | Tests |
@@ -87,6 +89,10 @@ For AdSense, also set `VITE_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX`.
 | **Interstitial** | Returning from a run to the main menu | 90–120 s between plays, 3 / session |
 
 All three games test the ad surface with `provider: 'none'` so CI stays green without portal credentials.
+
+### Submission checklist
+
+A step-by-step checklist of **exactly** what to upload where (assets, blurbs, SDK toggles) lives at [`PORTAL-SUBMISSION.md`](PORTAL-SUBMISSION.md).
 
 ### Submission links from the master prompt
 
