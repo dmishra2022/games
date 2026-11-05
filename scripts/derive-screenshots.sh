@@ -3,12 +3,14 @@
 # Uses macOS built-in `sips` (no deps).
 #
 # Output naming (per game):
-#   <game>-1920x1080.png   (master, already captured)
-#   <game>-1280x720.png    (Y8 widescreen, already captured)
-#   <game>-760x570.png     (Y8 standard screenshot + game card promo — 4:3)
+#   <game>-1920x1080.png   (master; CrazyGames landscape cover 16:9, Y8 landscape promo, Poki, itch gallery)
+#   <game>-1280x720.png    (Y8 widescreen)
+#   <game>-760x570.png     (Y8 standard screenshot + Y8 game card promo — 4:3)
 #   <game>-1080x1920.png   (Y8 portrait promo — 9:16)
-#   <game>-630x500.png     (itch.io cover + CrazyGames thumbnail — ~5:4)
-#   <game>-512x512.png     (Poki icon + Google AdSense — square)
+#   <game>-800x1200.png    (CrazyGames portrait cover — 2:3)
+#   <game>-800x800.png     (CrazyGames square cover — 1:1)
+#   <game>-630x500.png     (itch.io cover + CrazyGames thumbnail ~5:4)
+#   <game>-512x512.png     (Poki icon + Google AdSense square)
 set -euo pipefail
 SHOTS="/Users/dharmendra/misc/game/submission-artifacts/screenshots"
 
@@ -40,6 +42,17 @@ for game in neon-plinko neon-survivor tank-commander; do
   sips --cropToHeightWidth 1080 608 "$master" --out "$SHOTS/${game}-crop-portrait.png" >/dev/null
   sips --resampleWidth 1080 "$SHOTS/${game}-crop-portrait.png" --out "$SHOTS/${game}-1080x1920.png" >/dev/null
   rm "$SHOTS/${game}-crop-portrait.png"
+
+  # 800x1200 portrait (CrazyGames portrait cover, 2:3 ratio).
+  # Center-crop master to 2:3 (720x1080 of the central column), then resample to 800x1200.
+  sips --cropToHeightWidth 1080 720 "$master" --out "$SHOTS/${game}-crop-2x3.png" >/dev/null
+  sips --resampleWidth 800 "$SHOTS/${game}-crop-2x3.png" --out "$SHOTS/${game}-800x1200.png" >/dev/null
+  rm "$SHOTS/${game}-crop-2x3.png"
+
+  # 800x800 square (CrazyGames square cover).
+  sips --cropToHeightWidth 1080 1080 "$master" --out "$SHOTS/${game}-crop-sq.png" >/dev/null
+  sips --resampleWidth 800 "$SHOTS/${game}-crop-sq.png" --out "$SHOTS/${game}-800x800.png" >/dev/null
+  rm "$SHOTS/${game}-crop-sq.png"
 
   echo "OK $game"
 done

@@ -8,14 +8,16 @@ Masters are the 1920×1080 captures; all other sizes are derived via macOS `sips
 
 Each game has the following sizes available under `submission-artifacts/screenshots/`:
 
-| Size (px)  | File suffix            | Primary portal use                                                      |
-|------------|------------------------|-------------------------------------------------------------------------|
-| 1920 × 1080 | `-1920x1080.png`       | Y8 landscape promo, CrazyGames screenshot, Poki screenshot, itch gallery |
-| 1280 × 720  | `-1280x720.png`        | Y8 widescreen screenshot                                                |
-|  760 × 570  | `-760x570.png`         | Y8 standard screenshot **and** Y8 game card promo                        |
-| 1080 × 1920 | `-1080x1920.png`       | Y8 portrait promo                                                       |
-|  630 × 500  | `-630x500.png`         | itch.io cover image **and** CrazyGames thumbnail                         |
-|  512 × 512  | `-512x512.png`         | Poki game icon, Google AdSense square unit                              |
+| Size (px)   | File suffix      | Primary portal use                                                                                        |
+|-------------|------------------|-----------------------------------------------------------------------------------------------------------|
+| 1920 × 1080 | `-1920x1080.png` | CrazyGames **landscape cover** (16:9), Y8 landscape promo, Poki screenshot, itch gallery, AdSense banner |
+| 1280 × 720  | `-1280x720.png`  | Y8 widescreen screenshot                                                                                  |
+|  800 × 1200 | `-800x1200.png`  | CrazyGames **portrait cover** (2:3)                                                                       |
+|  800 × 800  | `-800x800.png`   | CrazyGames **square cover** (1:1)                                                                         |
+|  760 × 570  | `-760x570.png`   | Y8 standard screenshot **and** Y8 game card promo                                                         |
+| 1080 × 1920 | `-1080x1920.png` | Y8 portrait promo (9:16)                                                                                  |
+|  630 × 500  | `-630x500.png`   | itch.io cover image                                                                                       |
+|  512 × 512  | `-512x512.png`   | Poki game icon, Google AdSense square unit                                                                |
 
 Tank Commander additionally has `tank-commander-menu-1920x1080.png` (the title screen) — useful as a secondary screenshot or cover art.
 
@@ -31,12 +33,17 @@ Tank Commander additionally has `tank-commander-menu-1920x1080.png` (the title s
 
 Repeat the pattern for `neon_survivor` and `tank_commander` (use `tank-commander-menu-1920x1080.png` as a bonus screenshot slot).
 
-## CrazyGames
+## CrazyGames (all 3 covers mandatory)
 
-| CrazyGames field | File                            |
-|------------------|---------------------------------|
-| Screenshots (up to 5) | `<game>-1920x1080.png`     |
-| Thumbnail        | `<game>-630x500.png`            |
+| CrazyGames field                 | File                               |
+|----------------------------------|------------------------------------|
+| Landscape cover (16:9, 1920×1080) | `<game>-1920x1080.png`             |
+| Portrait cover (2:3, 800×1200)   | `<game>-800x1200.png`              |
+| Square cover (1:1, 800×800)      | `<game>-800x800.png`               |
+| Screenshots (up to 5, 1920×1080) | `<game>-1920x1080.png` (re-use)    |
+| Thumbnail (optional)             | `<game>-630x500.png`               |
+| Preview video (16:9, 15–20s MP4) | **Capture via `Cmd+Shift+5`**      |
+| Preview video (2:3, 15–20s MP4)  | **Capture via `Cmd+Shift+5`**      |
 
 ## Poki
 

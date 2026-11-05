@@ -23,7 +23,20 @@ Icon color: cyan `#5bc0eb`
 
 ## CrazyGames — Neon Plinko
 
-Submit URL: https://developer.crazygames.com/ → Dashboard → Submit a game
+Submit URL: https://developer.crazygames.com/ → Log in → Dashboard → Submit a game.
+
+**Covers (CrazyGames requires all three)** — from `submission-artifacts/screenshots/`:
+- Landscape 1920×1080 (16:9): `neon-plinko-1920x1080.png`
+- Portrait  800×1200 (2:3):   `neon-plinko-800x1200.png`
+- Square     800×800 (1:1):   `neon-plinko-800x800.png`
+
+> CrazyGames prefers **hero art with title overlay**, not raw screenshots. Our derived covers satisfy the size requirement; consider upgrading to proper cover art later via Fiverr/Canva if the review team flags them.
+
+**Preview videos** (both mandatory):
+- Landscape 1920×1080 16:9, 15–20 s, ≤50MB MP4, no sound
+- Portrait 1080×1620 2:3,   15–20 s, ≤50MB MP4, no sound
+
+Capture via `Cmd+Shift+5` → "Record Selected Portion" on `https://dmishra2022.github.io/games/neon-plinko/` at the two aspect ratios.
 
 **Title**
 ```
@@ -54,12 +67,10 @@ Upload: drag **`neon-plinko-crazygames.zip`**.
 
 ## Y8 — Neon Plinko
 
-Submit URL: https://account.y8.com/account/upload_zone
+Submit URL: https://developer.y8.com/games (Add New Game)
 
-Y8 accepts **URL submissions**, so paste the live link directly:
-```
-https://dmishra2022.github.io/games/neon-plinko/
-```
+> **Correction (2026-11-05)**: Y8's old `account.y8.com/account/upload_zone` URL is dead. Current portal is `developer.y8.com` (BETA). It does NOT accept URL-only submissions — you must upload a ZIP build + screenshots + a ≥15 s gameplay video. Already-pushed Neon Plinko draft lives at https://developer.y8.com/games/neon_plinko/edit (title, description, instructions, platforms, AI declaration all pre-filled; needs media uploads from `submission-artifacts/`).
+
 Title / short / long / controls / tags: identical to CrazyGames above.
 Category: **Arcade** (or **Skill**).
 
@@ -96,6 +107,13 @@ Live: https://dmishra2022.github.io/games/neon-survivor/
 Icon color: magenta `#ff61d4`
 
 ## CrazyGames — Neon Survivor
+
+**Covers** (all three required):
+- Landscape 1920×1080: `neon-survivor-1920x1080.png`
+- Portrait  800×1200:  `neon-survivor-800x1200.png`
+- Square     800×800:  `neon-survivor-800x800.png`
+
+**Preview videos**: landscape 16:9 + portrait 2:3, both 15-20 s, no sound.
 
 **Title**
 ```
@@ -154,6 +172,13 @@ Live: https://dmishra2022.github.io/games/tank-commander/
 Icon color: olive `#6b7a35`
 
 ## CrazyGames — Tank Commander
+
+**Covers** (all three required):
+- Landscape 1920×1080: `tank-commander-1920x1080.png` (or `tank-commander-menu-1920x1080.png` — the title screen has a nice big "TANK COMMANDER" wordmark)
+- Portrait  800×1200:  `tank-commander-800x1200.png`
+- Square     800×800:  `tank-commander-800x800.png`
+
+**Preview videos**: landscape 16:9 + portrait 2:3, both 15-20 s, no sound.
 
 **Title**
 ```
@@ -235,21 +260,37 @@ Only one GitHub Pages build at a time, so pick the portal driving the most traff
 
 ---
 
-# Assets you still need to generate (I cannot)
+# Assets status
 
-Portals require images only you can produce — I don't have access to drive your real Chrome / capture screenshots of the live game:
+## Already produced (2026-11-05)
 
-Per game:
-- **Cover image** 512×512 PNG (CrazyGames) — hero art; keep the title big and readable
-- **Thumbnail** 1600×900 JPG (CrazyGames) — in-game screenshot with title overlay
-- **In-game screenshots** 3 × 1280×720 JPG (CrazyGames, Poki)
-- **Trailer** 20–40 s MP4 (Poki only, optional but strongly recommended)
+Screenshots at every portal-required size are in [`submission-artifacts/screenshots/`](submission-artifacts/screenshots) (gitignored on disk). See [`docs/SCREENSHOTS-MAP.md`](docs/SCREENSHOTS-MAP.md) for the per-portal file mapping:
+
+- 1920×1080 (CrazyGames, Poki, Y8 landscape promo, itch gallery)
+- 1280×720 (Y8 widescreen)
+- 1080×1920 (Y8 portrait promo)
+- 760×570 (Y8 standard + Y8 game card)
+- 630×500 (itch cover, CrazyGames thumbnail)
+- 512×512 (Poki icon, AdSense square)
+
+## Still needed (you must produce)
+
+- **Gameplay videos** (Y8 requires 16:9 ≥15 s MP4; Poki wants a trailer 20–40 s)
 
 Fastest capture flow:
-1. Open the live game in Chrome.
-2. `Cmd+Shift+4` → `Space` → click canvas = clean rect screenshot.
-3. [squoosh.app](https://squoosh.app) to resize/crop.
-4. For the Poki trailer: QuickTime → `File → New Screen Recording` → capture a 30 s highlight → trim + export at 1280×720.
+1. Open the live game at `https://dmishra2022.github.io/games/<game>/`.
+2. `Cmd+Shift+5` → "Record Selected Portion" → draw 1920×1080 rect over game area → Record → play 20–30 s → Stop.
+3. QuickTime auto-saves to Desktop as `.mov`; drag into [CloudConvert](https://cloudconvert.com/mov-to-mp4) for MP4, or use `ffmpeg -i in.mov -crf 23 out.mp4`.
+
+## itch.io automation — ready to run
+
+Butler CLI already downloaded to [`tools/butler`](tools/butler) (gitignored, re-run `./scripts/push-to-itch.sh` to self-install from https://broth.itch.zone/butler/darwin-amd64/LATEST on a fresh clone).
+
+```bash
+export BUTLER_API_KEY=<from https://itch.io/user/settings/api-keys>
+export ITCH_USER=dmishra2022
+./scripts/push-to-itch.sh   # pushes all 3 ZIPs; creates unlisted drafts on first run
+```
 
 ---
 
