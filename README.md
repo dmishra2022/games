@@ -92,7 +92,9 @@ All three games test the ad surface with `provider: 'none'` so CI stays green wi
 
 ### Submission checklist
 
-A step-by-step checklist of **exactly** what to upload where (assets, blurbs, SDK toggles) lives at [`PORTAL-SUBMISSION.md`](PORTAL-SUBMISSION.md).
+Two companion docs:
+- [`PORTAL-PASTE-KIT.md`](PORTAL-PASTE-KIT.md) — **every field, copy-ready**. Open the portal, paste from the fences. 3 games × 4 portals.
+- [`PORTAL-SUBMISSION.md`](PORTAL-SUBMISSION.md) — longer-form portal guide with reasoning + asset requirements.
 
 ### Submission links from the master prompt
 
